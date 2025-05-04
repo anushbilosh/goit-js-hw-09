@@ -30,7 +30,7 @@ function onFormSubmit(event) {
     event.preventDefault();
 
     const { email, message } = formData;
-  // Перевірка на заповненість
+  
     if (!email || !message) {
     alert("Fill please all fields");
     return;
