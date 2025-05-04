@@ -1,6 +1,4 @@
 import SimpleLightbox from "simplelightbox";
-console.log(SimpleLightbox);
-
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const images = [
@@ -71,9 +69,9 @@ const images = [
 
 
 
-
   //----------РОЗМІТКА ГАЛЕРЕЇ------------- //
 
+const galleryContainer = document.querySelector('.gallery'); 
 
 function photoTemplate(photo) {
     return `
@@ -82,7 +80,6 @@ function photoTemplate(photo) {
     <img
         class="gallery-image"
         src="${photo.preview}"
-        data-source="${photo.original}"
         alt="${photo.description}"
     />
     </a>
@@ -94,7 +91,14 @@ function photosTemplate (photos){
     return photos.map(photoTemplate).join('')
 }
 
-const galleryContainer = document.querySelector('.gallery');
 const markup = photosTemplate(images);
-galleryContainer.insertAdjacentHTML('beforeend', markup)
 
+galleryContainer.innerHTML = markup;
+
+
+
+const lightbox = new SimpleLightbox(".gallery a", {
+    captionsData: "alt",       
+    captionDelay: 250,         
+    captionPosition: "bottom",
+  });
